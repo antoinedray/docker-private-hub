@@ -1,0 +1,21 @@
+.no-highlight-input {
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    margin-right: 0.7em;
+    margin-left: 0.7em;
+    position: absolute;
+    z-index: 2;
+    display: block;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+}
