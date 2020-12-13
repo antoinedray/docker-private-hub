@@ -50,8 +50,6 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v2
-        env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
         with:
           context: .
           file: ./Dockerfile
@@ -59,4 +57,4 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/docker-private-hub:latest
-            ${{ secrets.DOCKER_USERNAME }}/docker-private-hub:${RELEASE_VERSION}
+            ${{ secrets.DOCKER_USERNAME }}/docker-private-hub:${{ steps.vars.outputs.tag }}
