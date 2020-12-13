@@ -17,10 +17,6 @@ services:
         build:
           context: .
           dockerfile: Dockerfile
-          args:
-            DOCKER_REGISTRY: "localhost:5000"
-            DOCKER_REGISTRY_HOST: "localhost"
-            DOCKER_REGISTRY_PORT: "5000"
         container_name: registry-ui
         restart: unless-stopped
         depends_on:
