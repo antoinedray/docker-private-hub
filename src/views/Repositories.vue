@@ -4,7 +4,7 @@
       <div class="container-xl">
         <ol class="breadcrumb bg-white mb-0">
           <li class="breadcrumb-item"><a href="#">Repositories</a></li>
-          <li class="breadcrumb-item active" aria-current="page">repository-name / my-first-repo</li>
+          <li class="breadcrumb-item active" aria-current="page">{{registry}} / {{repository}}</li>
         </ol>
       </div>
     </nav>
@@ -48,14 +48,14 @@
               <div class="col-md-7">
                 <h4>
                   <font-awesome-icon icon="globe-americas" class="mr-3 text-gray-500" />
-                  deccldkv / <span class="font-weight-bold">{{repository}}</span>
+                  {{ registry }} / <span class="font-weight-bold">{{repository}}</span>
                 </h4>
               </div>
               <div class="col-6 col-md-5">
                 <div class="mb-3">
                   To push a new tag to this repository,
                 </div>
-                <input class="form-control bg-gray-700 no-highlight-input text-light border-0 rounded p-2" readonly :value="`docker push deccldkv/${repository}:tagname`" >
+                <input class="form-control bg-gray-700 no-highlight-input text-light border-0 rounded p-2" readonly :value="`docker push ${registry}/${repository}:tagname`" >
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@
                     <div class="has-copy-to-clipboard">
                       <font-awesome-icon :icon="['far', 'copy']"
                                          class="form-control-feedback text-primary" />
-                      <input :id="`tag-${tag.name}`" class="form-control bg-gray-200 no-highlight-input text-nowrap border-0 rounded px-2 py-1" style="width:250px" readonly :value="`docker pull fgkjdfnkgnj/${repository}:${tag.name}`">
+                      <input :id="`tag-${tag.name}`" class="form-control bg-gray-200 no-highlight-input text-nowrap border-0 rounded px-2 py-1" style="width:250px" readonly :value="`docker pull ${registry}/${repository}:${tag.name}`">
                     </div>
                   </div>
                 </div>
@@ -130,8 +130,8 @@
 <script>
 // @ is an alias to /src
 import JQuery from 'jquery'
-// import { HTTP } from '@/utils/http'
-// import { serialize } from '@/utils/manifests'
+import { HTTP } from '@/utils/http'
+import { serialize } from '@/utils/manifests'
 import { humanFileSize } from '@/utils/size'
 
 export default {
@@ -140,6 +140,7 @@ export default {
   },
   data() {
     return {
+      registry: process.env.VUE_APP_DOCKER_REGISTRY,
       repository: this.$route.params.name,
       images: [],
       static_tags: [],
@@ -156,39 +157,16 @@ export default {
     const manifest_list_v2_header = 'application/vnd.docker.distribution.manifest.list.v2+json'
     console.log(manifest_list_v2_header)
     try {
-      //const response = await HTTP.get(`/v2/${this.repository}/tags/list`)
-      //simple_tags = response.data
-      //for (t in simple_tags) {
-      //  const response = await HTTP.get(`/v2/${this.repository}/manifests/${t}`, {headers: {"Accept": manifest_list_v2_header}})
-      //  const manifests = response.data
-      //  this.static_tags.push({
-      //    'name': t,
-      //    'manifests': serialize(manifests)
-      //  })
-      //}
-      this.static_tags.push({
-        'name': '1.0-amd64',
-        'manifests': [
-          {
-            "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
-            "size": 7143,
-            "digest": "sha256:e692418e4cbaf90ca69d05a66403747baa33ee08806650b51fab815ad7fc331f",
-            "platform": {
-              "architecture": "ppc64le",
-              "os": "linux",
-            }
-          },
-          {
-            "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
-            "size": 7682,
-            "digest": "sha256:5b0bcabd1ed22e9fb1310cf6c2dec7cdef19f0ad69efa1f392e94a4333501270",
-            "platform": {
-              "architecture": "amd64",
-              "os": "linux"
-            }
-          }
-        ]
-      })
+      const response = await HTTP.get(`/${this.repository}/tags/list`)
+      var simple_tags = response.data.tags
+      for (var t of simple_tags) {
+        const response = await HTTP.get(`/${this.repository}/manifests/${t}`, {headers: {"Accept": manifest_list_v2_header}})
+        const manifests = response.data
+        this.static_tags.push({
+          'name': t,
+          'manifests': serialize(manifests)
+        })
+      }
       this.tags = this.static_tags
     } catch (error) {
       console.info('Error', error.message)

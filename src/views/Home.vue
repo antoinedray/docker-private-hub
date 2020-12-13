@@ -19,7 +19,7 @@
             <router-link class="repository d-block link-unstyled border rounded p-3" :to="`/repositories/${repository}`">
               <div class="content">
                 <span>
-                  repository-name
+                  {{ registry }}
                 </span>
                 <span> / </span>
                 <span class="font-weight-bold">
@@ -36,7 +36,7 @@
 
 <script>
 // @ is an alias to /src
-// import { HTTP } from '@/utils/http'
+import { HTTP } from '@/utils/http'
 
 export default {
   name: 'Home',
@@ -44,6 +44,7 @@ export default {
   },
   data() {
     return {
+      registry: process.env.VUE_APP_DOCKER_REGISTRY,
       static_repositories: [],
       repositories: [],
       filter: null
@@ -51,9 +52,8 @@ export default {
   },
   async created () {
     try {
-      // const response = await HTTP.get('/v2/_catalog')
-      // this.repositories = response.data
-      this.static_repositories = [ 'esurient_db', 'esurient_workers' ]
+      const response = await HTTP.get('/_catalog')
+      this.static_repositories = response.data.repositories
       this.repositories = this.static_repositories
     } catch (error) {
       console.error('Error', error.message)
