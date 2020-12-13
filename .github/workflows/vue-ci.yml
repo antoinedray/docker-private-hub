@@ -57,4 +57,4 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/docker-private-hub:latest
-            ${{ secrets.DOCKER_USERNAME }}/docker-private-hub:${{ env.RELEASE_VERSION }}
+            ${{ secrets.DOCKER_USERNAME }}/docker-private-hub:${{ steps.vars.outputs.tag }}
