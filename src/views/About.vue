@@ -1,5 +1,9 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <div class="container-xl text-gray-500">
+      <div class="my-5">
+        <h1>Made with love for open source</h1>
+      </div>
+    </div>
   </div>
 </template>

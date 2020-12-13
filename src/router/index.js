@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Repository from '../views/Repository.vue'
+import Repositories from '../views/Repositories.vue'
 
 Vue.use(VueRouter)
 
@@ -12,9 +12,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/repository',
-    name: 'Repository',
-    component: Repository
+    path: '/repositories/:name',
+    name: 'Repositories',
+    component: Repositories
   },
   {
     path: '/about',
