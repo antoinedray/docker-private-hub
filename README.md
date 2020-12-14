@@ -1,6 +1,11 @@
 # Docker Private Hub
 
+![Starts](https://img.shields.io/github/stars/antoinedray/docker-private-hub?style=social)
+![MIT License](https://img.shields.io/github/license/antoinedray/docker-private-hub)
+![Last Commit](https://img.shields.io/github/last-commit/antoinedray/docker-private-hub)
 ![CI Status](https://github.com/antoinedray/docker-private-hub/workflows/CI/badge.svg)
+![Docker Pulls](https://img.shields.io/docker/pulls/antoinedray/docker-private-hub)
+![Release](https://img.shields.io/github/v/release/antoinedray/docker-private-hub?include_prereleases)
 
 Docker Private Hub is a look-alike Docker Hub for self-hosted registries.
 
