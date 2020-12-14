@@ -25,6 +25,10 @@ services:
             - webnet
         ports:
             - 80:80
+        environment:
+            DOCKER_PRIVATE_HUB_HOST: "localhost"
+            REGISTRY_HOST: registry
+            REGISTRY_PORT: 5000
 
 networks:
     webnet:
