@@ -2,8 +2,6 @@
 FROM node:15.4-buster as build-stage
 
 ENV DOCKER_PRIVATE_HUB_HOST localhost
-ENV REGISTRY_HOST localhost
-ENV REGISTRY_PORT 5000
 
 WORKDIR /app
 
