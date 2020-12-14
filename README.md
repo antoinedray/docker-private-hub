@@ -2,7 +2,9 @@
 
 ![CI Status](https://github.com/antoinedray/docker-private-hub/workflows/CI/badge.svg)
 
-Docker Private Hub is a look-alike Docker Hub
+Docker Private Hub is a look-alike Docker Hub for self-hosted registries.
+
+The project is still under development.
 
 ## Usage
 
@@ -18,27 +20,12 @@ sudo docker run \
   antoinedray/docker-private-hub:latest
 ```
 
-## Run web interface from source
+## Questions?
 
-### Project setup
-```
-yarn install
-```
+If you find a bug, feel free to [open an issue](https://github.com/antoinedray/docker-private-hub/issues/new) and fill out the issue template.
 
-#### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Contributing
 
-#### Compiles and minifies for production
-```
-yarn build
-```
+If you are looking to start working with the Docker Private Hub codebase, navigate to the GitHub issues tab and start looking through interesting issues.
 
-#### Lints and fixes files
-```
-yarn lint
-```
-
-#### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Pull request, issue, or direct mention are welcome !
