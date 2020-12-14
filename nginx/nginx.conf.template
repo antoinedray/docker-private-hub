@@ -1,5 +1,5 @@
 upstream docker-registry {
-  server registry:5000;
+  server ${REGISTRY_HOST}:${REGISTRY_PORT};
 }
 
 ## Set a variable to help us decide if we need to add the
@@ -13,13 +13,13 @@ map $upstream_http_docker_distribution_api_version $docker_distribution_api_vers
 
 server {
 
-  listen 80;
-  server_name  localhost;
+  listen        80;
+  server_name   ${DOCKER_PRIVATE_HUB_HOST};
 
   location / {
-    root   /usr/share/nginx/html;
-    index  index.html index.htm;
-    try_files $uri $uri/ /index.html;
+    root        /usr/share/nginx/html;
+    index       index.html index.htm;
+    try_files   $uri $uri/ /index.html;
   }
 
   location /api/ {
