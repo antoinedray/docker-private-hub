@@ -1,11 +1,7 @@
 # build stage
 FROM node:15.4-buster as build-stage
 
-ENV DOCKER_PRIVATE_HUB_HOST localhost
-
 WORKDIR /app
-
-RUN echo "VUE_APP_DOCKER_PRIVATE_HUB_HOST=$DOCKER_PRIVATE_HUB_HOST" > ./.env
 
 COPY package*.json ./
 
