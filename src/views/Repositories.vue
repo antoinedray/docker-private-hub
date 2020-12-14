@@ -140,7 +140,7 @@ export default {
   },
   data() {
     return {
-      registry: process.env.VUE_APP_DOCKER_PRIVATE_HUB_HOST,
+      registry: location.host,
       repository: this.$route.params.name,
       images: [],
       static_tags: [],
