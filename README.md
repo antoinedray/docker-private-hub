@@ -2,6 +2,8 @@
 
 ![CI Status](https://github.com/antoinedray/docker-private-hub/workflows/CI/badge.svg)
 
+Docker Private Hub is a look-alike Docker Hub
+
 ## Usage
 
 This application is available in the form of a Docker image that you can run as a container by executing this command:
