@@ -9,7 +9,14 @@
 
 Docker Private Hub is a look-alike Docker Hub for self-hosted registries.
 
-The project is still under development.
+__Please Note:__ The project is still under development.
+
+## Features
+
+* Similiar design to the official Docker Hub website
+* Support for new multi-arch images
+* Backward compatibilty for old registry images
+* Easy to deploy
 
 ## Usage
 
